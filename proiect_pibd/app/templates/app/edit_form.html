@@ -1,0 +1,31 @@
+{% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Record</title>
+    {% bootstrap_css %}
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Update Information</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <form method="post">
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+                            <div class="d-grid gap-2 mt-4">
+                                <button type="submit" class="btn btn-success btn-lg">Save Changes</button>
+                                <a href="{% url 'modify_data' %}" class="btn btn-outline-secondary">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

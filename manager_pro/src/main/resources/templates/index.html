@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manager Pro | Welcome</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        /* This ensures all cards have the exact same height */
+        .equal-height {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body class="bg-light">
+<div class="container py-5 text-center">
+    <h1 class="fw-bold mb-1">Welcome</h1>
+    <p class="text-muted mb-5">How are you feeling today?</p>
+
+    <div class="row g-4 justify-content-center">
+        <div class="col-md-4 col-lg-3">
+            <div class="card shadow-sm p-4 h-100 border-0 equal-height">
+                <div class="bg-primary text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;"><i class="bi bi-person-fill"></i></div>
+                <h5 class="fw-bold mb-3">Add Client</h5>
+                <div class="mt-auto">
+                    <a th:href="@{/view/clienti/new}" class="btn btn-primary w-100">Create New</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+            <div class="card shadow-sm p-4 h-100 border-0 equal-height">
+                <div class="bg-success text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;"><i class="bi bi-folder-fill"></i></div>
+                <h5 class="fw-bold mb-3">Add Project</h5>
+                <div class="mt-auto">
+                    <a th:href="@{/view/proiecte/new}" class="btn btn-success w-100">Start Project</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+            <div class="card shadow-sm p-4 h-100 border-0 equal-height">
+                <div class="bg-warning text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;"><i class="bi bi-link-45deg"></i></div>
+                <h5 class="fw-bold mb-3">Assign</h5>
+                <div class="mt-auto">
+                    <a th:href="@{/view/clienti_proiecte/new}" class="btn btn-warning text-white w-100">Assign Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-lg-3">
+            <div class="card shadow-sm p-4 h-100 border-0 equal-height">
+                <div class="bg-info text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;"><i class="bi bi-database-fill"></i></div>
+                <h5 class="fw-bold mb-3">Data Center</h5>
+                <div class="d-grid gap-2 mt-auto">
+                    <a th:href="@{/view/clienti}" class="btn btn-outline-info btn-sm">Clients</a>
+                    <a th:href="@{/view/proiecte}" class="btn btn-outline-info btn-sm">Projects</a>
+                    <a th:href="@{/view/clienti_proiecte}" class="btn btn-outline-info btn-sm">Assignments</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

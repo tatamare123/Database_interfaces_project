@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Assign Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <div class="card shadow p-4 mx-auto" style="max-width: 600px;">
+        <h2 class="mb-4">Link Client to Project</h2>
+        <form th:action="@{/view/clienti_proiecte/save}" th:object="${obj}" method="post">
+
+            <div class="mb-3">
+                <label class="form-label">Select Client</label>
+                <select th:field="*{client}" class="form-select" required>
+                    <option value="">-- Choose Client --</option>
+                    <option th:each="c : ${allClients}" th:value="${c.id_client}" th:text="${c.nume}"></option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Select Project</label>
+                <select th:field="*{proiect}" class="form-select" required>
+                    <option value="">-- Choose Project --</option>
+                    <option th:each="p : ${allProjects}" th:value="${p.id_proiect}" th:text="${p.denumire}"></option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Select Role</label>
+                <select th:field="*{rol_client}" class="form-select" required>
+                    <option value="">-- Choose Role --</option>
+                    <option value="Partener">Partener</option>
+                    <option value="Client">Client</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-warning text-white w-100">Confirm Assignment</button>
+            <a href="/view/dashboard" class="btn btn-link w-100 mt-2 text-secondary">Back to Home</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>

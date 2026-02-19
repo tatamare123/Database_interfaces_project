@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Project List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <div class="card shadow-sm border-0 p-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold text-success"><i class="bi bi-folder-fill"></i> Project Portfolio</h2>
+            <div>
+                <a th:href="@{/view/dashboard}" class="btn btn-outline-secondary me-2">Back</a>
+                <a th:href="@{/view/proiecte/new}" class="btn btn-success">+ New Project</a>
+            </div>
+        </div>
+
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Project Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th class="text-center">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p : ${lista}">
+                <td th:text="${p.id_proiect}" class="fw-bold"></td>
+                <td th:text="${p.denumire}"></td>
+                <td th:text="${p.data_start}"></td>
+                <td th:text="${p.data_final}"></td>
+                <td class="text-center">
+                    <a th:href="@{/view/proiecte/update/{id}(id=${p.id_proiect})}" class="btn btn-sm btn-outline-success">
+                        <i class="bi bi-pencil"></i> Edit
+                    </a>
+                    <a th:href="@{/view/proiecte/delete/{id}(id=${p.id_proiect})}"
+                       class="btn btn-sm btn-outline-danger"
+                       onclick="return confirm('Permanently delete this project?')">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

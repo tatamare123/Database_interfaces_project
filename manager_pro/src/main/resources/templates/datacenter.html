@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manager Pro | Data Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+</head>
+<body class="bg-light">
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <h1 class="fw-bold text-primary"><i class="bi bi-database-fill"></i> Central Data Center</h1>
+        <a th:href="@{/view/dashboard}" class="btn btn-outline-secondary">Back to Dashboard</a>
+    </div>
+
+    <div class="card shadow-sm border-0 mb-5">
+        <div class="card-header bg-white py-3"><h5 class="mb-0 text-primary">Client Database</h5></div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Actions</th></tr></thead>
+                <tbody>
+                <tr th:each="c : ${Clients}">
+                    <td th:text="${c.id_client}"></td>
+                    <td th:text="${c.nume}"></td>
+                    <td th:text="${c.email}"></td>
+                    <td><a th:href="@{/view/clienti/update/{id}(id=${c.id_client})}" class="btn btn-sm btn-link">Edit</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-0 mb-5">
+        <div class="card-header bg-white py-3"><h5 class="mb-0 text-success">Project Portfolio</h5></div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead><tr><th>ID</th><th>Project Name</th><th>Status</th><th>Actions</th></tr></thead>
+                <tbody>
+                <tr th:each="p : ${Projects}">
+                    <td th:text="${p.id_proiect}"></td>
+                    <td th:text="${p.denumire}"></td>
+                    <td th:text="${p.data_final}"></td>
+                    <td><a th:href="@{/view/proiecte/update/{id}(id=${p.id_proiect})}" class="btn btn-sm btn-link">Edit</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-white py-3"><h5 class="mb-0 text-warning">Active Assignments</h5></div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead><tr><th>ID</th><th>Client</th><th>Project</th><th>Role</th></tr></thead>
+                <tbody>
+                <tr th:each="cp : ${Assignments}">
+                    <td th:text="${cp.id_rol}"></td>
+                    <td th:text="${cp.client.nume}"></td>
+                    <td th:text="${cp.proiect.denumire}"></td>
+                    <td th:text="${cp.rol_client}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

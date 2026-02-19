@@ -1,0 +1,121 @@
+{% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Project Management</title>
+    {% bootstrap_css %}
+    <style>
+        body { background-color: #f4f7f6; }
+        .dashboard-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            border-radius: 15px;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+        .icon-circle {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.4rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-dark bg-dark shadow-sm mb-5">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+                🚀 Project Manager Pro
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-dark">Welcome</h1>
+            <p class="lead text-muted">How are you feeling today?</p>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            
+            <div class="col">
+                <div class="card h-100 shadow-sm dashboard-card text-center p-3">
+                    <div class="card-body">
+                        <div class="icon-circle bg-primary text-white">👤</div>
+                        <h5 class="card-title fw-bold">Add Client</h5>
+                        <p class="card-text small text-muted">Register new partners or beneficiaries.</p>
+                        <a href="{% url 'add_client' %}" class="btn btn-primary w-100 mt-2">Create New</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 shadow-sm dashboard-card text-center p-3">
+                    <div class="card-body">
+                        <div class="icon-circle bg-success text-white">📁</div>
+                        <h5 class="card-title fw-bold">Add Project</h5>
+                        <p class="card-text small text-muted">Define new project goals and timelines.</p>
+                        <a href="{% url 'add_proiect' %}" class="btn btn-success w-100 mt-2">Start Project</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 shadow-sm dashboard-card text-center p-3">
+                    <div class="card-body">
+                        <div class="icon-circle bg-warning text-dark">🔗</div>
+                        <h5 class="card-title fw-bold">Assign</h5>
+                        <p class="card-text small text-muted">Link clients to active projects.</p>
+                        <a href="{% url 'add_client_proiect' %}" class="btn btn-warning w-100 mt-2 fw-bold text-dark">Assign Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 shadow-sm dashboard-card text-center p-3 border-info">
+                    <div class="card-body">
+                        <div class="icon-circle bg-info text-white">📊</div>
+                        <h5 class="card-title fw-bold">Data Center</h5>
+                        <p class="card-text small text-muted">View all current database records.</p>
+                        <a href="{% url 'display_data' %}" class="btn btn-outline-info w-100 mt-2">View Tables</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 shadow-sm dashboard-card text-center p-3 border-primary">
+                    <div class="card-body">
+                        <div class="icon-circle bg-primary text-white">✏️</div>
+                        <h5 class="card-title fw-bold">Modify Data</h5>
+                        <p class="card-text small text-muted">Update and edit existing record info.</p>
+                        <a href="{% url 'modify_data' %}" class="btn btn-primary w-100 mt-2">Edit Records</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card h-100 shadow-sm dashboard-card text-center p-3 border-danger">
+                    <div class="card-body">
+                        <div class="icon-circle bg-danger text-white">🗑️</div>
+                        <h5 class="card-title fw-bold">Remove</h5>
+                        <p class="card-text small text-muted">Remove outdated records permanently.</p>
+                        <a href="{% url 'manage_database' %}" class="btn btn-outline-danger w-100 mt-2">Open</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {% bootstrap_javascript %}
+</body>
+</html>

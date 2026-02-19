@@ -1,0 +1,136 @@
+{% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Records | Project Management</title>
+    {% bootstrap_css %}
+    <style>
+        body { background-color: #f8f9fa; }
+        .table-container { margin-bottom: 3rem; }
+        .card-header { font-weight: bold; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">Project Management</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
+                <a class="nav-link active" href="{% url 'display_data' %}">View All Data</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h2">Database Records</h1>
+            <a href="{% url 'home' %}" class="btn btn-outline-secondary">
+                &larr; Back to Dashboard
+            </a>
+        </div>
+
+        <div class="card shadow-sm table-container">
+            <div class="card-header bg-primary text-white">
+                1. Clients (Clienti)
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Telephone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for client in clienti %}
+                            <tr>
+                                <td>{{ client.id_client }}</td>
+                                <td>{{ client.nume }}</td>
+                                <td>{{ client.email }}</td>
+                                <td>{{ client.telefon }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="4" class="text-center text-muted">No clients registered.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm table-container">
+            <div class="card-header bg-success text-white">
+                2. Projects (Proiecte)
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Project Name</th>
+                                <th>Start Date</th>
+                                <th>Deadline</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for proiect in proiecte %}
+                            <tr>
+                                <td>{{ proiect.id_proiect }}</td>
+                                <td>{{ proiect.denumire }}</td>
+                                <td>{{ proiect.data_start }}</td>
+                                <td>{{ proiect.data_final }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="4" class="text-center text-muted">No projects created.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm table-container">
+            <div class="card-header bg-warning text-dark">
+                3. Client-Project Assignments
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Client</th>
+                                <th>Project</th>
+                                <th>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cp in clienti_proiecte %}
+                            <tr>
+                                <td>{{ cp.id_client.nume }}</td> 
+                                <td>{{ cp.id_proiect.denumire }}</td>
+                                <td>
+                                    <span class="badge {% if cp.rol_client == 'beneficiar' %}bg-info text-dark{% else %}bg-secondary{% endif %}">
+                                        {{ cp.rol_client }}
+                                    </span>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="3" class="text-center text-muted">No assignments found.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% bootstrap_javascript %}
+</body>
+</html>

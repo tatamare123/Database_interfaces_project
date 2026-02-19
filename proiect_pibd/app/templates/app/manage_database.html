@@ -1,0 +1,65 @@
+{% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Manage Database</title>
+    {% bootstrap_css %}
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-danger mb-4">
+        <div class="container"><a class="navbar-brand" href="{% url 'home' %}">⚠️ Database Management</a></div>
+    </nav>
+
+    <div class="container">
+        <h2 class="mb-4">Delete Records</h2>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card shadow-sm border-danger">
+                    <div class="card-body">
+                        <h5>Remove Client</h5>
+                        <select class="form-select mb-3" id="cSel">
+                            {% for c in clienti %}<option value="{{ c.id_client }}">{{ c.nume }}</option>{% endfor %}
+                        </select>
+                        <button class="btn btn-danger w-100" onclick="del('client')">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-sm border-danger">
+                    <div class="card-body">
+                        <h5>Remove Project</h5>
+                        <select class="form-select mb-3" id="pSel">
+                            {% for p in proiecte %}<option value="{{ p.id_proiect }}">{{ p.denumire }}</option>{% endfor %}
+                        </select>
+                        <button class="btn btn-danger w-100" onclick="del('project')">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-sm border-danger">
+                    <div class="card-body">
+                        <h5>Remove Assignment</h5>
+                        <select class="form-select mb-3" id="aSel">
+                            {% for a in assignments %}<option value="{{ a.id_rol }}">{{ a.id_client.nume }} -> {{ a.id_proiect.denumire }}</option>{% endfor %}
+                        </select>
+                        <button class="btn btn-danger w-100" onclick="del('assignment')">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="{% url 'home' %}" class="btn btn-secondary mt-4">Back to Home</a>
+    </div>
+
+    <script>
+    function del(type) {
+        let id = document.getElementById(type[0] + 'Sel').value;
+        if (confirm("Permanently delete this " + type + "?")) {
+            window.location.href = "/delete_" + type + "/" + id + "/";
+        }
+    }
+    </script>
+</body>
+</html>
